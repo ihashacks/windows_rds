@@ -1,0 +1,10 @@
+name             "windows_rds"
+maintainer       "Adam Mielke, (C) Regents of the University of Minnesota"
+maintainer_email "adam@umn.edu"
+license          "All rights reserved"
+description      "Installs/Configures Windows Remote Desktop Session Hosts"
+long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
+version          "0.1.0"
+supports         "windows", ">= 6.1"
+depends          "powershell"
+depends          "windows"
