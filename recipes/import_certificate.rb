@@ -5,10 +5,13 @@
 # Copyright (C) 2013 Adam Mielke, (C) Regents of the University of Minnesota
 # 
 
-cert_thumbprint = Digest::SHA1.hexdigest(OpenSSL::PKCS12.new(IO.binread(node[:windows_rds][:cert_location]),node[:windows_rds][:cert_password]).certificate.to_der)
+Chef::Recipe.send(:include, Windows::Helper)
+certutil = locate_sysnative_cmd("certutil.exe")
+
+cert_location = win_friendly_path(node[:windows_rds][:cert][:location])
 
 execute "Import certificate" do
-  command "certutil -p \"#{node[:windows_rds][:cert_password]}\" -importpfx \"#{node[:windows_rds][:cert_location]}\""
-  not_if { Registry.key_exists?("HKLM\\SOFTWARE\\Microsoft\\SystemCertificates\\my\\Certificates\\#{cert_thumbprint}") }
+  command "#{certutil} -p \"#{node[:windows_rds][:cert][:password]}\" -importpfx \"#{cert_location}\""
+  not_if { %x[#{certutil} -store my] =~ /CN=#{node[:windows_rds][:cert][:cn]},/ }
   action :run
 end

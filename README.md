@@ -6,8 +6,10 @@
 
 # Attributes
 
-* `node[:windows_rds][:certcn]`
-* `node[:windows_rds][:remoteapp_hostname]`
+* `node[:windows_rds][:cert][:cn]`
+* `node[:windows_rds][:cert][:location]`
+* `node[:windows_rds][:cert][:password]`
+* `node[:windows_rds][:remoteapp][:hostname]`
 
 # Recipes
 
