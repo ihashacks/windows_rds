@@ -21,7 +21,7 @@ ruby_block "reboot" do
 		raise "Reboot required to install Remote Desktop Session Host role"
 	end
 	only_if do
-		cmd = Chef::ShellOut.new("#{dism} /online /Get-Features", {:returns => [0,42,127]}).run_command
+		cmd = Mixin::ShellOut.new("#{dism} /online /Get-Features", {:returns => [0,42,127]}).run_command
     	cmd.stderr.empty? && (cmd.stdout =~  /^Feature Name : AppServer.*$\n^State : Enable Pending.?$/i)
 	end
 end

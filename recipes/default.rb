@@ -39,3 +39,10 @@ if node[:windows_rds][:remoteapp][:hostname]
 		EOH
 	end
 end
+
+if node[:windows_rds][:rds_users]
+	group "Remote Desktop Users" do
+		members node[:windows_rds][:rds_users]
+		action :modify
+	end
+end

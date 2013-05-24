@@ -10,6 +10,7 @@
 * `node[:windows_rds][:cert][:location]`
 * `node[:windows_rds][:cert][:password]`
 * `node[:windows_rds][:remoteapp][:hostname]`
+* `node[:windows_rds][:rds_users]`
 
 # Recipes
 

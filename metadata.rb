@@ -4,7 +4,7 @@ maintainer_email "adam@umn.edu"
 license          "All rights reserved"
 description      "Installs/Configures Windows Remote Desktop Session Hosts"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          "0.1.0"
+version          "0.2.0"
 supports         "windows", ">= 6.1"
 depends          "powershell"
 depends          "windows"
