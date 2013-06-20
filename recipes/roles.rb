@@ -17,11 +17,12 @@ windows_feature "AppServer-UI"
 
 ruby_block "reboot" do
 	block do
+		node.save # Save the current node state. This is especially important if this is the first time the node has ever run chef.
 		system("shutdown /r /t 60 /c \"Installing Role: Remote Desktop Session Host\"")
 		raise "Reboot required to install Remote Desktop Session Host role"
 	end
 	only_if do
-		cmd = Mixin::ShellOut.new("#{dism} /online /Get-Features", {:returns => [0,42,127]}).run_command
+		cmd = Mixlib::ShellOut.new("#{dism} /online /Get-Features", {:returns => [0,42,127]}).run_command
     	cmd.stderr.empty? && (cmd.stdout =~  /^Feature Name : AppServer.*$\n^State : Enable Pending.?$/i)
 	end
 end
