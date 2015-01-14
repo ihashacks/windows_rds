@@ -37,6 +37,7 @@ Installs RDS server roles.
 - alias
 - displayname
 - path
+- userassignment
 
 # Author
 
